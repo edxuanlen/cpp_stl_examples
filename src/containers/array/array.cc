@@ -4,6 +4,8 @@
 #include <iostream>
 #include <iterator>
 
+// std::array is a container that encapsulates fixed size arrays.
+
 void test_init_array() {
   // std::array<T, N> 定义了一个大小为N的数组，数组大小在编译期间就已经确定了
   std::array<int, 5> a1 = {1, 2, 3, 4, 5};
@@ -21,6 +23,15 @@ void test_init_array() {
   std::reverse_copy(a3.begin(), a3.end(),
                     std::ostream_iterator<int>(std::cout, " "));
   std::cout << std::endl;
+
+  std::cout << a3.at(2) << std::endl;
+  try {
+    a3.at(3) = 6;  // catch std::out_of_range
+  } catch (std::out_of_range const& exc) {
+    std::cout << exc.what() << '\n';
+  }
+
+  std::cout << a3.data() << std::endl;
 }
 
 int main() {
